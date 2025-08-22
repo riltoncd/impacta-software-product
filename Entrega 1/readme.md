@@ -256,12 +256,26 @@ f1_miniatures/
 ```
 
 #### **4. Executar a Aplicação**
-
+## excecuçao automaticia
 ##### **🚀 Primeira execução (build e run):**
 ```bash
 # Navegar até o diretório do projeto
 cd f1_miniatures
 
+# 1. Dar permissão de execução
+chmod +x start_mac_lin.sh fix-port.sh
+
+# 2. Executar o script atualizado
+./start_mac_lin.sh # se estiver usando windows, abrir diretorio no CMD e executar start_win.bat
+O script vai:
+
+🔍 Detectar que a porta 5000 está ocupada
+📋 Mostrar qual processo está usando
+🤔 Perguntar como você quer resolver
+⚡ Resolver automaticamente
+🎉 Iniciar na porta correta
+
+#### Excecuçao manual.
 # Construir e executar todos os serviços
 docker-compose up --build
 
