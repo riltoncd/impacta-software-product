@@ -1,0 +1,73 @@
+:root {
+    --f1-red: #ff1e00;
+    --f1-dark: #15151e;
+    --f1-gray: #38383f;
+}
+
+body {
+    background-color: #f8f9fa;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+
+.navbar-brand {
+    font-weight: bold;
+    font-size: 1.5rem;
+}
+
+.card {
+    border: none;
+    box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+    transition: transform 0.2s ease-in-out;
+}
+
+.card:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 4px 8px rgba(0,0,0,0.15);
+}
+
+.card-header {
+    border-bottom: 2px solid rgba(255,255,255,0.2);
+}
+
+.btn-primary {
+    background-color: var(--f1-red);
+    border-color: var(--f1-red);
+}
+
+.btn-primary:hover {
+    background-color: #e01a00;
+    border-color: #e01a00;
+}
+
+.form-control:focus {
+    border-color: var(--f1-red);
+    box-shadow: 0 0 0 0.2rem rgba(255, 30, 0, 0.25);
+}
+
+.form-select:focus {
+    border-color: var(--f1-red);
+    box-shadow: 0 0 0 0.2rem rgba(255, 30, 0, 0.25);
+}
+
+.alert-success {
+    background-color: #d4edda;
+    border-color: #c3e6cb;
+    color: #155724;
+}
+
+.alert-danger {
+    background-color: #f8d7da;
+    border-color: #f5c6cb;
+    color: #721c24;
+}
+
+/* Responsividade */
+@media (max-width: 768px) {
+    .container {
+        padding: 0 10px;
+    }
+    
+    .card {
+        margin-bottom: 1rem;
+    }
+}

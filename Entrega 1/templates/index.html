@@ -1,0 +1,66 @@
+{% extends "base.html" %}
+
+{% block content %}
+<div class="row">
+    <div class="col-12">
+        <div class="d-flex justify-content-between align-items-center mb-4">
+            <h1>Minha Coleção de Miniaturas F1</h1>
+            <a href="{{ url_for('add_miniature') }}" class="btn btn-primary">
+                ➕ Nova Miniatura
+            </a>
+        </div>
+
+        {% if miniatures %}
+            <div class="row">
+                {% for miniature in miniatures %}
+                <div class="col-md-6 col-lg-4 mb-4">
+                    <div class="card h-100">
+                        <div class="card-header bg-primary text-white">
+                            <h5 class="card-title mb-0">{{ miniature.model }}</h5>
+                        </div>
+                        <div class="card-body">
+                            {% if miniature.pilot %}
+                                <p class="card-text"><strong>Piloto:</strong> {{ miniature.pilot }}</p>
+                            {% endif %}
+                            
+                            <p class="card-text"><strong>Equipe:</strong> 
+                                {% if miniature.team_ref %}
+                                    {{ miniature.team_ref.name }}
+                                    {% if miniature.team_ref.country %}
+                                        ({{ miniature.team_ref.country }})
+                                    {% endif %}
+                                {% endif %}
+                            </p>
+                            
+                            {% if miniature.year %}
+                                <p class="card-text"><strong>Ano:</strong> {{ miniature.year }}</p>
+                            {% endif %}
+                            
+                            {% if miniature.scale %}
+                                <p class="card-text"><strong>Escala:</strong> {{ miniature.scale }}</p>
+                            {% endif %}
+                            
+                            {% if miniature.description %}
+                                <p class="card-text"><strong>Descrição:</strong></p>
+                                <p class="card-text text-muted">{{ miniature.description }}</p>
+                            {% endif %}
+                        </div>
+                        <div class="card-footer text-muted">
+                            Adicionada em {{ miniature.created_at.strftime('%d/%m/%Y') }}
+                        </div>
+                    </div>
+                </div>
+                {% endfor %}
+            </div>
+        {% else %}
+            <div class="text-center py-5">
+                <h3 class="text-muted">Nenhuma miniatura cadastrada ainda</h3>
+                <p class="text-muted">Comece sua coleção adicionando sua primeira miniatura!</p>
+                <a href="{{ url_for('add_miniature') }}" class="btn btn-primary btn-lg">
+                    ➕ Adicionar Primeira Miniatura
+                </a>
+            </div>
+        {% endif %}
+    </div>
+</div>
+{% endblock %}
