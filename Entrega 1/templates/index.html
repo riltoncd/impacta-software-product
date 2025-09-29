@@ -46,7 +46,58 @@
                             {% endif %}
                         </div>
                         <div class="card-footer text-muted">
-                            Adicionada em {{ miniature.created_at.strftime('%d/%m/%Y') }}
+                            <div class="d-flex justify-content-between align-items-center">
+                                <small>Adicionada em {{ miniature.created_at.strftime('%d/%m/%Y') }}</small>
+                                <div class="btn-group" role="group">
+                                    <a href="{{ url_for('edit_miniature', id=miniature.id) }}" 
+                                       class="btn btn-sm btn-outline-primary">
+                                        ✏️ Editar
+                                    </a>
+                                    <button type="button" 
+                                            class="btn btn-sm btn-outline-danger"
+                                            data-bs-toggle="modal" 
+                                            data-bs-target="#deleteModal{{ miniature.id }}">
+                                        🗑️ Excluir
+                                    </button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <!-- Modal de Confirmação de Exclusão -->
+                    <div class="modal fade" id="deleteModal{{ miniature.id }}" tabindex="-1" aria-labelledby="deleteModalLabel{{ miniature.id }}" aria-hidden="true">
+                        <div class="modal-dialog modal-dialog-centered">
+                            <div class="modal-content">
+                                <div class="modal-header bg-danger text-white">
+                                    <h5 class="modal-title" id="deleteModalLabel{{ miniature.id }}">
+                                        ⚠️ Confirmar Exclusão
+                                    </h5>
+                                    <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal" aria-label="Close"></button>
+                                </div>
+                                <div class="modal-body">
+                                    <p class="mb-3">Tem certeza que deseja excluir esta miniatura?</p>
+                                    <div class="alert alert-warning">
+                                        <strong>📦 Miniatura:</strong> {{ miniature.model }}<br>
+                                        {% if miniature.pilot %}
+                                            <strong>👤 Piloto:</strong> {{ miniature.pilot }}<br>
+                                        {% endif %}
+                                        <strong>🏁 Equipe:</strong> {{ miniature.team_ref.name if miniature.team_ref else 'N/A' }}
+                                    </div>
+                                    <p class="text-danger mb-0">
+                                        <strong>⚠️ Atenção:</strong> Esta ação não pode ser desfeita!
+                                    </p>
+                                </div>
+                                <div class="modal-footer">
+                                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">
+                                        ❌ Cancelar
+                                    </button>
+                                    <form method="POST" action="{{ url_for('delete_miniature', id=miniature.id) }}" style="display: inline;" id="deleteForm{{ miniature.id }}">
+                                        <button type="submit" class="btn btn-danger" id="deleteBtn{{ miniature.id }}">
+                                            🗑️ Sim, Excluir
+                                        </button>
+                                    </form>
+                                </div>
+                            </div>
                         </div>
                     </div>
                 </div>

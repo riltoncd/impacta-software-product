@@ -90,6 +90,71 @@ def add_team():
     
     return render_template('add_team.html')
 
+@app.route('/edit_miniature/<int:id>', methods=['GET', 'POST'])
+def edit_miniature(id):
+    miniature = Miniature.query.get_or_404(id)
+    
+    if request.method == 'POST':
+        model = request.form['model']
+        description = request.form['description']
+        pilot = request.form['pilot']
+        team_id = request.form.get('team_id')
+        custom_team = request.form.get('custom_team')
+        year = request.form.get('year')
+        scale = request.form.get('scale')
+        
+        # Validação básica
+        if not model:
+            flash('Modelo é obrigatório!', 'error')
+            return redirect(url_for('edit_miniature', id=id))
+        
+        # Se não selecionou uma equipe e não informou equipe customizada
+        if not team_id and not custom_team:
+            flash('Selecione uma equipe ou informe uma equipe personalizada!', 'error')
+            return redirect(url_for('edit_miniature', id=id))
+        
+        # Se informou equipe customizada, criar uma nova equipe
+        if custom_team and not team_id:
+            existing_team = Team.query.filter_by(name=custom_team).first()
+            if not existing_team:
+                new_team = Team(name=custom_team, is_custom=True)
+                db.session.add(new_team)
+                db.session.flush()
+                team_id = new_team.id
+            else:
+                team_id = existing_team.id
+        
+        # Atualizar miniatura
+        miniature.model = model
+        miniature.description = description
+        miniature.pilot = pilot
+        miniature.team_id = int(team_id) if team_id else None
+        miniature.year = int(year) if year else None
+        miniature.scale = scale
+        
+        db.session.commit()
+        
+        flash('Miniatura atualizada com sucesso!', 'success')
+        return redirect(url_for('index'))
+    
+    teams = Team.query.order_by(Team.name).all()
+    return render_template('edit_miniature.html', miniature=miniature, teams=teams)
+
+@app.route('/delete_miniature/<int:id>', methods=['POST'])
+def delete_miniature(id):
+    miniature = Miniature.query.get_or_404(id)
+    model_name = miniature.model  # Guardar para mensagem
+    
+    try:
+        db.session.delete(miniature)
+        db.session.commit()
+        flash(f'Miniatura "{model_name}" excluída com sucesso!', 'success')
+    except Exception as e:
+        db.session.rollback()
+        flash(f'Erro ao excluir miniatura: {str(e)}', 'error')
+    
+    return redirect(url_for('index'))
+
 @app.route('/api/teams')
 def api_teams():
     teams = Team.query.all()
