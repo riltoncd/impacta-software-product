@@ -22,4 +22,4 @@ COPY . .
 EXPOSE 5000
 
 # Comando para inicializar banco e rodar aplicação
-CMD ["sh", "-c", "python init_db.py && python app.py"]
+CMD ["sh", "-c", "python setup_folders.py && python init_db.py && python migrate_add_photo.py && python app.py"]

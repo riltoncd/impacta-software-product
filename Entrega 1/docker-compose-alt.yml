@@ -37,12 +37,15 @@ services:
       FLASK_DEBUG: "True"
     volumes:
       - .:/app  # Para desenvolvimento (hot reload)
+      - uploads_data:/app/static/uploads  # Persistir fotos
     networks:
       - f1_network
     restart: unless-stopped
 
 volumes:
   postgres_data:
+    driver: local
+  uploads_data:
     driver: local
 
 networks:

@@ -1,4 +1,10 @@
-# F1 Miniatures Collection Manager - Etapa 1
+## Funcionalidades Implementadas
+
+### ✅ Etapa 1-3 - Sistema Completo
+
+**CRUD Completo:**
+- **Create (Cadastro)**: Cadastro de miniaturas com validação completa
+- **Read (Visualização)**: Cards# F1 Miniatures Collection Manager - Etapa 1
 
 Sistema para gerenciar coleção de miniaturas de carros de Fórmula 1.
 
@@ -256,26 +262,12 @@ f1_miniatures/
 ```
 
 #### **4. Executar a Aplicação**
-## excecuçao automaticia
+
 ##### **🚀 Primeira execução (build e run):**
 ```bash
 # Navegar até o diretório do projeto
 cd f1_miniatures
 
-# 1. Dar permissão de execução
-chmod +x start_mac_lin.sh fix-port.sh
-
-# 2. Executar o script atualizado
-./start_mac_lin.sh # se estiver usando windows, abrir diretorio no CMD e executar start_win.bat
-O script vai:
-
-🔍 Detectar que a porta 5000 está ocupada
-📋 Mostrar qual processo está usando
-🤔 Perguntar como você quer resolver
-⚡ Resolver automaticamente
-🎉 Iniciar na porta correta
-
-#### Excecuçao manual.
 # Construir e executar todos os serviços
 docker-compose up --build
 
@@ -475,7 +467,32 @@ docker-compose build app
 1. **Acesse**: http://localhost:5000
 2. **Adicionar Equipe**: Clique em "Adicionar Equipe" para cadastrar novas equipes
 3. **Adicionar Miniatura**: Clique em "Adicionar Miniatura" para cadastrar suas miniaturas
-4. **Visualizar Coleção**: A página inicial mostra todas as miniaturas cadastradas
+4. **Editar Miniatura**: Clique no botão "✏️ Editar" em qualquer card de miniatura
+5. **Excluir Miniatura**: Clique no botão "🗑️ Excluir" e confirme na janela modal
+6. **Visualizar Coleção**: A página principal mostra todas as miniaturas cadastradas
+
+## Funcionalidades Implementadas
+
+### ✅ Etapa 1-3 - Sistema Completo
+
+**CRUD Completo:**
+- **Create (Cadastro)**: Cadastro de miniaturas com validação completa
+- **Read (Visualização)**: Cards responsivos com fotos e informações
+- **Update (Edição)**: Atualizar informações e fotos de miniaturas existentes
+- **Delete (Exclusão)**: Remover miniaturas com confirmação de segurança
+
+**Upload de Fotos:** ✨ NOVO
+- **Upload de fotos** ao cadastrar miniaturas
+- **Preview em tempo real** antes do upload
+- **Substituir foto** durante edição
+- **Remover foto** individualmente
+- **Validação** de formato (PNG, JPG, JPEG, GIF, WEBP)
+- **Limite de tamanho**: 16MB por foto
+- **Imagem padrão** para miniaturas sem foto
+- **Galeria visual** nos cards
+
+**Gerenciamento de Equipes:**
+- Cadastro de equipes oficiais e personalizadas
 
 ## Estrutura de Dados
 
@@ -495,7 +512,7 @@ docker-compose build app
 
 ## Próximas Etapas
 
-- **Etapa 2**: Editar e excluir registros
+- **Etapa 1-2**: ~~Cadastro, Edição e Exclusão~~ ✅ **CONCLUÍDO - CRUD COMPLETO**
 - **Etapa 3**: Upload e gerenciamento de fotos
 - **Etapa 4**: Integração com vídeos do YouTube
 
@@ -515,6 +532,8 @@ f1_miniatures/
 │   ├── base.html
 │   ├── index.html
 │   ├── add_miniature.html
+│   ├── edit_miniature.html
+│   ├── delete_confirm.html    ← NOVO (opcional)
 │   └── add_team.html
 └── README.md           # Instruções de instalação
 ```
@@ -550,6 +569,20 @@ f1_miniatures/
 - Piloto opcional
 - Seleção de equipe ou equipe personalizada
 - Ano e escala opcionais
+
+### ✅ Edição de Miniaturas
+- Editar todas as informações de miniaturas existentes
+- Manter ou alterar equipe
+- Validação de dados
+- Interface intuitiva com campos pré-preenchidos
+- Mensagens de confirmação
+
+### ✅ Exclusão de Miniaturas (NOVO)
+- Remover miniaturas da coleção
+- Modal de confirmação com detalhes da miniatura
+- Dupla segurança contra exclusões acidentais
+- Mensagens informativas
+- Impossível desfazer (segurança)
 
 ### ✅ Gerenciamento de Equipes
 - Cadastro de novas equipes
