@@ -1,0 +1,6 @@
+<svg width="400" height="300" xmlns="http://www.w3.org/2000/svg">
+  <rect width="400" height="300" fill="#e9ecef"/>
+  <text x="200" y="130" font-family="Arial, sans-serif" font-size="48" fill="#6c757d" text-anchor="middle">📦</text>
+  <text x="200" y="180" font-family="Arial, sans-serif" font-size="20" fill="#6c757d" text-anchor="middle">Sem foto</text>
+  <text x="200" y="210" font-family="Arial, sans-serif" font-size="14" fill="#adb5bd" text-anchor="middle">Adicione uma foto da miniatura</text>
+</svg>
